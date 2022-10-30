@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+#CAMPOS: Nome/Sobrenome|Tell|Endereço|Outros
+
+#INTERNAL FIELD SEPARATOR (IFS), $IFS
+#TAB, ENTER, ESPAÇO EM BRANCO. -> DELIMITADORES
+
+#Manipulador = pipe (|)
+
+OLDFS="$IFS"
+
+#DECLARANDO NOVO CAMPO DELIMITADOR
+IFS='|'
+
+while read nome telefone endereco outros; do
+        [[ "$nome" =~ ^\& ]] && continue
+        echo -e "\e[31;lm======= ${nome} ======= \e[m"
+        echo -e "Telefone:\t${telefone}"
+        echo -e "Endereço:\t${endereco}"
+        echo -e "Outros: \t${outros}"
+done < "$1"
